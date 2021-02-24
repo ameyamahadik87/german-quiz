@@ -1,43 +1,42 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-8">
-      <!-- <div class="card" *ngFor="let item of questions; let i = index">
-            <div class="card-body">
-              <h5>
-                Q{{i+1}}. {{item.question}}
-              </h5>
-              <div class="form-check-inline">
-                <div class="form-check-inline" *ngFor="let option of item.options">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="question{{i+1}}" value="{{option}}" [checked]="option" (change)="onOptionChange(option,item.answer)">
-                    {{option}}
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div> -->
-      <owl-carousel-o [options]="customOptions">
-        <ng-container *ngFor="let item of questions; let i = index">
-          <ng-template carouselSlide [id]="">
-            <div class="card">
-              <div class="card-body">
-                <h5>
-                  Q{{i+1}}. {{item.question}}
-                </h5>
-                <div class="form-check-inline">
-                  <div class="form-check-inline" *ngFor="let option of item.options">
-                    <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="question{{i+1}}" value="{{option}}"
-                        [checked]="option" (change)="onOptionChange(option,item.answer)">
-                      {{option}}
-                    </label>
+      <ng-container *ngIf="!isQuizOpen; else elseTemplate">
+        <div class="card">
+          <div class="card-body">
+            <button class="btn btn-primary" (click)="showQuiz()">
+              Start Quiz
+            </button>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let item of questions; let i = index;let lastElement = last">
+            <ng-template carouselSlide [id]="">
+              <div class="card">
+                <div class="card-body">
+                  <h5>
+                    Q{{i+1}}. {{item.question}}
+                  </h5>
+                  <div class="form-check-inline">
+                    <div class="form-check-inline" *ngFor="let option of item.options">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="question{{i+1}}" value="{{option}}"
+                          [checked]="false" (change)="onOptionChange(option,i)">
+                        {{option}}
+                      </label>
+                    </div>
                   </div>
                 </div>
+                <div *ngIf="lastElement" class="text-center my-2">
+                  <button class="btn btn-success" (click)="submit(questions)">Submit</button>
+                </div>
               </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </ng-template>
     </div>
   </div>
   <!-- </div> -->
