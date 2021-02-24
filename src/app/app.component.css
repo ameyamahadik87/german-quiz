@@ -1,0 +1,15 @@
+.main-wrapper{
+  background-image: url('../assets/images/castle-neuschwanstein.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+  height: calc(100vh - 63px);
+}
+.navbar-brand{
+  width: 60px;
+}
+.navbar{
+  background-color: transparent;
+  padding-top: 0;
+  padding-bottom: 0;
+}
