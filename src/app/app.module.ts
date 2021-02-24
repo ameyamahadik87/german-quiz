@@ -6,7 +6,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { AppRoutingModule } from './app.routing';
 import { FormsModule } from '@angular/forms';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,9 +17,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    SlickCarouselModule
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

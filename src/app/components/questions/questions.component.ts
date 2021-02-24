@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-questions',
@@ -19,7 +20,7 @@ export class QuestionsComponent implements OnInit {
         'Lakshman',
         'Hanuman'
       ],
-      'answer' : 'Ram'
+      'answer': 'Ram'
     },
     {
       'question': 'Question 2',
@@ -29,7 +30,7 @@ export class QuestionsComponent implements OnInit {
         '3',
         '4'
       ],
-      'answer' : '2'
+      'answer': '2'
     },
     {
       'question': 'Question 3',
@@ -39,7 +40,7 @@ export class QuestionsComponent implements OnInit {
         '3',
         '4'
       ],
-      'answer' : '3'
+      'answer': '3'
     }
   ]
 
@@ -48,17 +49,57 @@ export class QuestionsComponent implements OnInit {
     console.log(this.userInfo)
   }
 
-  onOptionChange(option,abc){
-
-    console.log(option,abc);
+  onOptionChange(option, abc) {
+    console.log(option, abc);
   }
 
-  slides = [
-    { img: "http://placehold.it/350x150/000000" },
-    { img: "http://placehold.it/350x150/111111" },
-    { img: "http://placehold.it/350x150/333333" },
-    { img: "http://placehold.it/350x150/666666" }
-  ];
-  slideConfig = { "slidesToShow": 4, "slidesToScroll": 4 };
+  slidesStore = [
+    {
+      id : 1,
+      src : 'http://placehold.it/350x150/000000',
+      alt : 'alt'
+    },
+    {
+      id : 2,
+      src : 'http://placehold.it/350x150/111111',
+      alt : 'alt'
+    },
+    {
+      id : 3,
+      src : 'http://placehold.it/350x150/222222',
+      alt : 'alt'
+    },
+    {
+      id : 4,
+      src : 'http://placehold.it/350x150/333333',
+      alt : 'alt'
+    }
+  ]
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 100,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: true
+  }
+
 
 }
