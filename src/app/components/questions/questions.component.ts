@@ -78,12 +78,15 @@ export class QuestionsComponent implements OnInit {
 
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
+    mouseDrag: true,
+    autoplay: true,
+    autoplayTimeout: 10000,
+    autoplaySpeed: 100,
     touchDrag: false,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 100,
-    navText: ['', ''],
+    // navText: ['', ''],
     responsive: {
       0: {
         items: 1
@@ -98,7 +101,7 @@ export class QuestionsComponent implements OnInit {
         items: 1
       }
     },
-    nav: true
+    nav: false
   }
 
 
