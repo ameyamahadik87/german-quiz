@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 // var nodemailer = require('nodemailer');
+declare let Email: any;
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
@@ -52,30 +53,80 @@ export class QuestionsComponent implements OnInit {
     }
   ]
 
-  // sendEmail() {
-  //   var transporter = nodemailer.createTransport({
-  //     service: 'gmail',
-  //     auth: {
-  //       user: 'anuyoyo@gmail.com',
-  //       pass: '44848744'
-  //     }
-  //   });
+  sendEmail() {
+    let data2 = {
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": "john.doe@example.com",
+              "name": "John Doe"
+            }
+          ],
+          "dynamic_template_data": {
+            "verb": "",
+            "adjective": "",
+            "noun": "",
+            "currentDayofWeek": ""
+          },
+          "subject": "Hello, World!"
+        }
+      ],
+      "from": {
+        "email": "noreply@johndoe.com",
+        "name": "John Doe"
+      },
+      "reply_to": {
+        "email": "noreply@johndoe.com",
+        "name": "John Doe"
+      },
+      "template_id": "d-8db26f0886a244f6b28f85d8b21476c8"
+    }
 
-  //   var mailOptions = {
-  //     from: 'anuyoyo@gmail.com',
-  //     to: 'nileshsutar007@gmail.com',
-  //     subject: 'Sending Email using Node.js',
-  //     text: 'That was easy!'
-  //   };
+    var data = JSON.stringify({
+      "personalizations": [
+        {
+          "to": [
+            {
+              "email": "nileshsutar007@gmail.com",
+              "name": "Nilesh"
+            }
+          ],
+          "dynamic_template_data": {
+            "verb": "",
+            "adjective": "",
+            "noun": "",
+            "currentDayofWeek": ""
+          },
+          "subject": "Hello, World!"
+        }
+      ],
+      "from": {
+        "email": "ameyamahadik@gmail.com",
+        "name": "John Doe"
+      },
+      "reply_to": {
+        "email": "ameyamahadik@gmail.com",
+        "name": "John Doe"
+      },
+      "template_id": "d-8db26f0886a244f6b28f85d8b21476c8"
+    });
 
-  //   transporter.sendMail(mailOptions, function (error, info) {
-  //     if (error) {
-  //       console.log(error);
-  //     } else {
-  //       console.log('Email sent: ' + info.response);
-  //     }
-  //   });
-  // }
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        console.log(this.responseText);
+      }
+    });
+
+    xhr.open("POST", "https://api.sendgrid.com/v3/mail/send");
+    xhr.setRequestHeader("authorization", "Bearer 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");
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem("userInfo")) {
