@@ -1,16 +1,29 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-5 pt-5">
-      <form>
+      <form #userForm="ngForm">
         <div class="form-group">
           <label for="fullname">Full Name</label>
-          <input type="text" class="form-control" id="fullname" name="fullname" [(ngModel)]="fullName" required>
+          <input type="text" class="form-control" id="fullname" name="fullname" [(ngModel)]="fullName"
+            #fullNameRef="ngModel" required>
+          <div *ngIf="fullNameRef?.touched && fullNameRef?.errors" class="alert alert-danger mt-2">
+            <small *ngIf="fullNameRef?.errors?.required">
+              Full name is reqiured
+            </small>
+          </div>
         </div>
         <div class="form-group">
           <label for="emailid">Email address</label>
-          <input type="email" class="form-control" id="emailid" name="emailid" [(ngModel)]="emailId" required>
+          <input type="email" class="form-control" id="emailid" name="emailid" [(ngModel)]="emailId"
+            #emailIdRef="ngModel" required>
+          <div *ngIf="emailIdRef?.touched && emailIdRef?.errors" class="alert alert-danger mt-2">
+            <small *ngIf="emailIdRef?.errors?.required">
+              Email is reqiured
+            </small>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="saveData(fullName,emailId)">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid"
+          (click)="saveData(fullName,emailId)">Submit</button>
       </form>
     </div>
   </div>
